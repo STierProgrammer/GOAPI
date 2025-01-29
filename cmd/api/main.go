@@ -15,4 +15,14 @@ func main() {
 	var r *chi.Mux = chi.NewRouter();
 
 	handlers.Handler(r);
+
+	fmt.Println("Starting GO API service...");
+
+	err := http.ListenAndServe("localhost:8081", r);
+
+	if err != nil {
+		log.Error(err);
+	};
+
+	
 }
