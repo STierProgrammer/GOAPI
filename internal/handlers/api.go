@@ -6,3 +6,12 @@ import (
 	"github.com/stierprogrammer/goapi/internal/middleware"
 );
 
+func Handler(r *chi.Mux) {
+	r.Use(chimiddle.StripSlashes);
+
+	r.Route("/account", func(router chi.Router) {
+		router.Use(middleware.Authorization);
+
+		router.Get("/coins", GetCoinBalance);
+	});
+}
